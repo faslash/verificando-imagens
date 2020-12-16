@@ -70,7 +70,7 @@ def connectMySQL(sql, tipo):
 
 def verificandoImagens():
 
-    print('Verificando se possui imagens para ser verificadas!')
+    print('Verificando se possui imagens para serem verificadas!')
 
     resultadosIMG = connectPostgre("SELECT patient.pat_id, study.accession_no, study.pk FROM study INNER JOIN patient ON patient.pk = study.patient_fk WHERE study.enviado = 0", 1)
 
