@@ -1,0 +1,6 @@
+__pycache__/
+.idea/
+.vscode/
+venv/
+config/__pycache__/
+config/database.ini
