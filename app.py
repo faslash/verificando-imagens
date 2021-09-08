@@ -33,7 +33,7 @@ def connectPostgre(sql, tipo):
             
             if(resultado == None):
                 print('Nenhuma imagem encontrada!')
-                time.sleep(60*15)
+                time.sleep(60*5)
                 conn.close()
                 verificandoImagens()
         elif(tipo == 2):
@@ -136,15 +136,13 @@ def connectVertis(sql):
 def verificandoImagens():
 
     try:
-        print('Verificando se possui imagens para serem verificadas!')
+        print('Verificando se possui imagens para serem enviadas!')
 
         resultadosIMG = connectPostgre("SELECT patient.pat_id, study.accession_no, study.pk, study.mods_in_study, patient.pat_name FROM study INNER JOIN patient ON patient.pk = study.patient_fk WHERE study.enviado = 0", 1)
         pk = resultadosIMG[2]
         mods_in_study = resultadosIMG[3]
         pat_name = resultadosIMG[4]
         data_atual = datetime.today()
-
-        print(isinstance(resultadosIMG[1], int))
 
         if resultadosIMG[1] == None:
             print('Accession Number nulo, será necessário atualiza-lo manualmente!\nAtualizando informações para ignorar esta linha.\n')
@@ -250,8 +248,8 @@ def verificandoImagens():
     except Exception as e:
         print(e)
 
-        print('\nAguardando 15 minutos para tentar novamente!\n')
-        time.sleep(60*15)
+        print('\nAguardando 5 minutos para tentar novamente!\n')
+        time.sleep(60*5)
         main()
 
 def timer():
